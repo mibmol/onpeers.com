@@ -1,0 +1,19 @@
+{
+	"title": "Configure availability",
+	"no-dates": "No scheduled dates",
+	"startdate": "start date",
+	"duration": {
+		"title": "duration",
+		"15": "15 minutes",
+		"30": "30 minutes",
+		"45": "45 minutes",
+		"1h": "1 hour",
+		"1h15": "1 hour 15 mins",
+		"1h30": "1 hour 30 mins",
+		"1h45": "1 hour 45 mins",
+		"2h": "2 hours"
+	},
+	"service": {
+		"title": "services"
+	}
+}

@@ -1,0 +1,85 @@
+type TimeSliderProps = {
+	selectedDate?: DateTime;
+	duration: DurationOption;
+	schedules: ScheduleRecur[];
+	onItemChange?: (dt: DateTime, push: boolean) => void;
+};
+const TimeSlider: FC<TimeSliderProps> = memo(
+	({ selectedDate, duration, schedules, onItemChange }) => {
+		const [dragging, setDragging] = useState(false);
+		const allTimes = listAllDayTimes(selectedDate, duration.value);
+		const scrollCenter = schedules[0]
+			? schedules[0].dtStart.subtract(duration.value, 'minutes')
+			: null;
+		return (
+			<div
+				className="h-80 mt-2 px-2 overflow-y-auto overflow-x-hidden overscroll-contain"
+				onMouseDown={() => setDragging(true)}
+				onMouseUp={() => setDragging(false)}
+			>
+				{allTimes.map((dt) => {
+					let isSelected = !!schedules.find(({ dtStart, dtEnd }) =>
+						dt.isBetween(dtStart, dtEnd, 'minutes', '[)'),
+					);
+					let isScrollCenter = isDateTimeEqual(dt, scrollCenter);
+					return (
+						<ListItem
+							dt={dt}
+							key={dt.toString()}
+							isSelected={isSelected}
+							isScrollCenter={isScrollCenter}
+							onChange={onItemChange}
+							dragging={dragging}
+						/>
+					);
+				})}
+			</div>
+		);
+	},
+);
+
+const ListItem: FC<{
+	dt: DateTime;
+	isSelected: boolean;
+	isScrollCenter: boolean;
+	dragging: boolean;
+	onChange: (dt: DateTime, isSelected: boolean) => void;
+}> = ({ dt, isSelected, isScrollCenter, dragging, onChange }) => {
+	const ref = useRef(null);
+	const [hovering, setHovering] = useState(false);
+	useOnce(() => {
+		if (isScrollCenter) {
+			ref.current.scrollIntoView();
+		}
+	});
+	useEffect(() => {
+		if (dragging && hovering) {
+			onChange(dt, !isSelected);
+		}
+	}, [dragging, hovering]);
+
+	const onEnter = (e) => {
+		if (e.key === 'Enter' && document.activeElement === findDOMNode(ref.current)) {
+			onChange(dt, !isSelected);
+		}
+	};
+
+	return (
+		<div className="relative">
+			<div className=" absolute cursor-ns-resize w-full h-1 transition duration-150"></div>
+			<button
+				ref={ref}
+				onMouseEnter={() => setHovering(() => true)}
+				onMouseLeave={() => setHovering(() => false)}
+				onKeyUp={onEnter}
+				className={cn('text-center text-sm font-semibold py-2 w-full rounded', {
+					'text-white bg-blue-700 font-bold': isSelected,
+					'text-gray-800 bg-gray-100': !isSelected,
+					'cursor-ns-resize': dragging && hovering,
+				})}
+			>
+				{dt.format('hh:mm a')}
+			</button>
+		</div>
+	);
+};

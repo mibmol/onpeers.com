@@ -1,0 +1,50 @@
+{
+	"files.watcherExclude": {
+		".git/**": true,
+		"node_modules/**": true,
+		"yarn.lock": true,
+		"package-lock.json": true
+	},
+	"files.exclude": {
+		"node_modules/**": true,
+		".next": true,
+		".vscode/": false,
+		".git/": true
+	},
+	"search.exclude": {
+		"node_modules/*": true,
+		".next": true,
+		".build/**": true,
+		".git/*": true,
+		"yarn.lock": true,
+		"package-lock.json": true
+	},
+	"css.validate": false,
+	"[json]": {
+		"editor.quickSuggestions": {
+			"strings": true
+		},
+		"editor.detectIndentation": false,
+		"editor.tabSize": 2,
+		"editor.insertSpaces": false,
+		"editor.suggest.insertMode": "replace"
+	},
+	"[javascript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.detectIndentation": false,
+		"editor.tabSize": 3,
+		"editor.insertSpaces": false,
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.detectIndentation": false,
+		"editor.tabSize": 3,
+		"editor.insertSpaces": false,
+	},
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.detectIndentation": false,
+		"editor.tabSize": 3,
+		"editor.insertSpaces": false,
+	}
+}

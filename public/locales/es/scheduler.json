@@ -1,0 +1,19 @@
+{
+	"title": "Configurar disponibilidad",
+	"no-dates": "Sin fechas programadas ",
+	"startdate": "fecha de inicio",
+	"duration": {
+		"title": "duración",
+		"15": "15 minutos",
+		"30": "30 minutos",
+		"45": "45 minutos",
+		"1h": "1 hora",
+		"1h15": "1 hora 15 mins",
+		"1h30": "1 hora 30 mins",
+		"1h45": "1 hora 45 mins",
+		"2h": "2 horas"
+	},
+	"service": {
+		"title": "servicios"
+	}
+}
