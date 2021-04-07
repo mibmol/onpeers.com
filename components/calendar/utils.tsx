@@ -1,6 +1,5 @@
 import { OpUnitType } from 'dayjs';
 import { ScheduleRecur } from '../../api/models/schedule';
-import { MINUTES_A_DAY } from '../../utils/dateUtils';
 import { DateTime } from '../../utils/dayjsUtils';
 import { changeTz } from '../../utils/tz';
 
