@@ -20,7 +20,7 @@ export function makeCancelable(promise: Promise<any>, resolve: Function, reject:
 	};
 }
 
-export function sleep(ms: number = 1000): Promise<any> {
+export function sleep(ms: number = 1000): Promise<void> {
 	return new Promise((resolve) => setTimeout(resolve, ms));
 }
 

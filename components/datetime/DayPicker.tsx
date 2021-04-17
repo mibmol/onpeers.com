@@ -4,7 +4,7 @@ import { arrayFill } from '../../utils/array';
 import { dateHasTimes } from '../calendar/utils';
 import { datetime, DateTime, isDateEqual, listDaysNames } from '../../utils/dayjsUtils';
 import { default as cn } from 'classnames';
-import { ScheduleRecur } from '../../api/models/schedule';
+import { ScheduleRecur } from '../../services/models/schedule';
 import { TWSpinner } from '../common/icons';
 import { useDateTime } from './hooks';
 
@@ -60,10 +60,11 @@ export const DayPicker: FC<DayPickerProps> = ({
 	const emptyBlocks = useMemo(() => renderEmptyBlock(actualYearMonth), [
 		actualYearMonth.toString(),
 	]);
-	const days = useMemo(
-		() => getDaysProps(actualYearMonth, selectedDate, scheduleItems),
-		[actualYearMonth, selectedDate, scheduleItems],
-	);
+	const days = useMemo(() => getDaysProps(actualYearMonth, selectedDate, scheduleItems), [
+		actualYearMonth,
+		selectedDate,
+		scheduleItems,
+	]);
 
 	const DayWrapper = daysWapperComponent;
 	return (
@@ -108,9 +109,9 @@ export const DayPicker: FC<DayPickerProps> = ({
 
 function renderDayNames() {
 	return listDaysNames().map((dayName, i) => (
-		<div className="text-sm text-gray-700 font-bold capitalize" key={i + dayName}>
+		<span className="text-sm text-gray-700 font-bold capitalize" key={i + dayName}>
 			{dayName}
-		</div>
+		</span>
 	));
 }
 function renderEmptyBlock(actual: DateTime) {
@@ -164,9 +165,7 @@ const DayItem: FC<{
 					{date.date()}
 				</span>
 			) : (
-				<span
-					className={`font-semibold ${isSelected ? 'text-white' : 'text-gray-600'}`}
-				>
+				<span className={`font-semibold ${isSelected ? 'text-white' : 'text-gray-600'}`}>
 					{date.date()}
 				</span>
 			)}

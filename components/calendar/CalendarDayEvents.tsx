@@ -1,9 +1,9 @@
 import { FC, Fragment, useMemo } from 'react';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import { getScheduleRecurs } from '../../api/mocks/schedule';
-import { ScheduleRecur } from '../../api/models/schedule';
-import { Event } from '../../api/models/service';
+import { getScheduleRecurs } from '../../services/mocks/schedule';
+import { ScheduleRecur } from '../../services/models/schedule';
+import { Event } from '../../services/models/service';
 import { DateTime } from '../../utils/dayjsUtils';
 import { HSeparator } from '../common/separators';
 import { DayPicker } from '../datetime/DayPicker';

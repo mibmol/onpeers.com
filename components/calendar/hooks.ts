@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useSetState } from 'react-use';
-import { getScheduleRecurs, getAvailability, getEvents } from '../../api/mocks/schedule';
-import { ScheduleRecur } from '../../api/models/schedule';
-import { Event } from '../../api/models/service';
+import { getScheduleRecurs, getAvailability, getEvents } from '../../services/mocks/schedule';
+import { ScheduleRecur } from '../../services/models/schedule';
+import { Event } from '../../services/models/service';
 import { DateTime } from '../../utils/dayjsUtils';
 
 export function loadAvailability(yearMonth: DateTime) {

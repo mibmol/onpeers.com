@@ -1,9 +1,10 @@
+/*  BUTTONS  */
 .btn-def {
-	@apply text-gray-800 hover:bg-gray-200 active:bg-gray-300
+	@apply text-gray-800 hover:bg-gray-200 active:bg-gray-300;
 }
 
 .btn-gray {
-	@apply bg-gray-100 text-gray-800 hover:bg-gray-200 active:bg-gray-300
+	@apply bg-gray-100 text-gray-800 hover:bg-gray-200 active:bg-gray-300;
 }
 
 .btn-indigo {
@@ -22,6 +23,26 @@
 	@apply bg-blacko text-greeno hover:bg-gray-800 active:bg-gray-900;
 }
 
+.btn-greeno {
+	@apply bg-greeno text-blacko hover:bg-gray-800 active:bg-gray-900;
+}
+
+/*   INPUTS  */
+
+.input-indigo {
+	@apply outline-none rounded ring-2 ring-transparent transition duration-100 hover:ring-indigo-200 focus:ring-indigo-400;
+}
+
+.input-pink {
+	@apply outline-none rounded ring-2 ring-transparent transition duration-100 hover:ring-pink-200 focus:ring-pink-400;
+}
+
+.input-red {
+	@apply outline-none rounded ring-2 ring-transparent ring-red-300;
+}
+
+/* UNCATEGORIzED  */
+
 .absolute-fit {
 	@apply absolute top-0 left-0 w-full h-full flex justify-center items-center;
 }
@@ -33,7 +54,6 @@
 .cursor-ns-resize {
 	cursor: ns-resize;
 }
-
 
 /*  FLEX */
 .flex-row-center {
@@ -52,8 +72,6 @@
 	@apply flex flex-col items-center justify-between;
 }
 
-
-
 /* WIDTHs  */
 .w-25 {
 	width: 6.25rem;
@@ -66,9 +84,24 @@
 /* SHADOWS */
 
 .shadow-center-lg {
-	box-shadow: 0px 0px 32px 0px rgba(0,0,0,0.1);
+	box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.1);
 }
 
 .shadow-top {
-	box-shadow: 0px -26px 30px -17px rgba(0,0,0,0.1);
+	box-shadow: 0px -26px 30px -17px rgba(0, 0, 0, 0.1);
 }
+
+/*  SPIN */
+@keyframes spinx {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+.spin-fast {
+	animation: spinx 0.7s linear infinite;
+}
+
+

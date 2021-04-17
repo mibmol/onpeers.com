@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { ScheduleRecur } from '../../api/models/schedule';
+import { ScheduleRecur } from '../../services/models/schedule';
 import { DateTime } from '../../utils/dayjsUtils';
 import { EventRecur } from './hooks';
 

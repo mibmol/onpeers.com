@@ -14,8 +14,11 @@ export type User = {
 	professions?: Profession;
 };
 
- 
+export enum UserRole {
+	PEER = 'peer',
+}
+
 export type Profession = {
-	id: number,
-	name: string
- }
+	id: number;
+	name: string;
+};

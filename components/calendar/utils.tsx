@@ -1,5 +1,5 @@
 import { OpUnitType } from 'dayjs';
-import { ScheduleRecur } from '../../api/models/schedule';
+import { ScheduleRecur } from '../../services/models/schedule';
 import { DateTime } from '../../utils/dayjsUtils';
 import { changeTz } from '../../utils/tz';
 
@@ -51,4 +51,10 @@ export const DURATIONS: DurationOption[] = [
 	{ value: 90, label: 'duration.1h30' },
 	{ value: 105, label: 'duration.1h45' },
 	{ value: 120, label: 'duration.2h' },
+	{ value: 135, label: 'duration.2h15' },
+	{ value: 150, label: 'duration.2h30' },
+	{ value: 175, label: 'duration.2h45' },
+	{ value: 190, label: 'duration.3h' },
+	{ value: 205, label: 'duration.3h15' },
+	{ value: 220, label: 'duration.3h30' },
 ];

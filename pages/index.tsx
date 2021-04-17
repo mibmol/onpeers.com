@@ -1,5 +1,5 @@
 import Head from 'next/head';
-// import Link from 'next/link';
+import Link from 'next/link';
 import { Assets } from '../components/common/headers';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
@@ -23,15 +23,17 @@ export default function Home() {
 				{/* : on demand consulting and mentoring */}
 				<Assets />
 			</Head>
+			<Link href="/" locale={i18n.language === 'en' ? 'es' : 'en'}>
+				<strong>{t('button.accept')}</strong>
+			</Link>
 			<div className="flex justify-center items-center w-screen h-screen">
 				<span className="text-gray-800 text-3xl font-medium">Curious?</span>
 			</div>
-			{/* <Link href="/" locale={i18n.language === 'en' ? 'es' : 'en'}>
-				<strong>{t('button.accept')}</strong>
-			</Link>
-			<div className="flex p-4">
-				<Calendar />
-			</div> */}
+			{/* 
+				<div className="flex p-4">
+					<Calendar />
+				</div>
+			*/}
 		</>
 	);
 }

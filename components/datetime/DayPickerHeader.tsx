@@ -5,6 +5,7 @@ import { ChevronDown, ChevronLeft, ChevronRight } from '../common/icons';
 import { datetime, DateTime, listMonthNames } from '../../utils/dayjsUtils';
 import { Button, IconButton } from '../common/buttons';
 import Popover from '../common/radix-ui/popover';
+import { IdProvider } from '@radix-ui/react-id';
 
 type DayPickerHeaderProps = {
 	actualYearMonth: DateTime;
@@ -23,42 +24,35 @@ const RightChevron = (
 );
 
 export const DayPickerHeader: FC<DayPickerHeaderProps> = memo(
-	({
-		actualYearMonth,
-		canPickMonth = true,
-		onSelectMonth,
-		onClickPrev,
-		onClickNext,
-	}) => {
+	({ actualYearMonth, canPickMonth = true, onSelectMonth, onClickPrev, onClickNext }) => {
 		return (
 			<div className="flex-row-center">
 				<IconButton icon={LeftChevron} onClick={onClickPrev} />
 				<div className="w-44 flex-row-center">
 					{canPickMonth ? (
-						<Popover.Root>
-							<Popover.Trigger as="div">
-								<Button
-									className="font-bold btn-def px-1"
-									text={actualYearMonth.format('MMMM YYYY')}
-									iconPos="right"
-									icon={
-										canPickMonth && (
-											<ChevronDown
-												sizes="w-4 h-4"
-												className="ml-1 text-gray-500"
-											/>
-										)
-									}
-								/>
-							</Popover.Trigger>
-							<Popover.Content>
-								<Popover.Arrow className="w-4 h-2 fill-current text-gray-800" />
-								<MonthSelector
-									onSelect={onSelectMonth}
-									actualYearMonth={actualYearMonth}
-								/>
-							</Popover.Content>
-						</Popover.Root>
+						<IdProvider>
+							<Popover.Root>
+								<Popover.Trigger as="div">
+									<Button
+										className="font-bold btn-def px-1"
+										text={actualYearMonth.format('MMMM YYYY')}
+										iconPos="right"
+										icon={
+											canPickMonth && (
+												<ChevronDown sizes="w-4 h-4" className="ml-1 text-gray-500" />
+											)
+										}
+									/>
+								</Popover.Trigger>
+								<Popover.Content>
+									<Popover.Arrow className="w-4 h-2 fill-current text-gray-800" />
+									<MonthSelector
+										onSelect={onSelectMonth}
+										actualYearMonth={actualYearMonth}
+									/>
+								</Popover.Content>
+							</Popover.Root>
+						</IdProvider>
 					) : (
 						<div className="font-bold">{actualYearMonth.format('MMMM YYYY')}</div>
 					)}

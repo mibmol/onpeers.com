@@ -28,13 +28,9 @@ export function isDateEqual(a: DateTime, b: DateTime): boolean {
  */
 export function isDateTimeEqual(a: DateTime, b: DateTime): boolean {
 	if (!a || !b) return false;
-	return (
-		a.year() === b.year() &&
-		a.month() === b.month() &&
-		a.date() === b.date() &&
-		a.hour() === b.hour() &&
-		a.minute() === b.minute()
-	);
+	return isDateEqual(a, b) && 
+		a.hour() === b.hour() && 
+		a.minute() === b.minute();
 }
 
 // get the date number [0-30] for monday in the current week

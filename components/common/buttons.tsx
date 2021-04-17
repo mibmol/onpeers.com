@@ -12,7 +12,7 @@ type IButtonProps = {
 	ariaLabel?: string;
 };
 
-const spin = (
+export const spin = (
 	<div className="absolute-fit">
 		<TWSpinner size="w-4 h-4" color="text-blue-300" animating />
 	</div>
@@ -53,8 +53,14 @@ export const Button: FC<IButtonProps> = memo(
 	},
 );
 
-export const IconButton: FC<IButtonProps & {roundClass?: string}> = memo(
-	({ icon, onClick, className = '', ariaLabel = 'button', roundClass="rounded-full" }) => (
+export const IconButton: FC<IButtonProps & { roundClass?: string }> = memo(
+	({
+		icon,
+		onClick,
+		className = '',
+		ariaLabel = 'button',
+		roundClass = 'rounded-full',
+	}) => (
 		<button
 			onClick={onClick}
 			className={`flex p-2 font-bold transition duration-100 btn-def ${roundClass} ${className}`}

@@ -13,11 +13,16 @@ module.exports = {
 			fontFamily: {
 				serif: ['Libre\\ Baskerville'],
 				sans: ['Lato', 'sans-serif'],
-			}
+			},
 		},
 	},
 	variants: {
-		backgroundColor: ['hover', 'active', 'focus']
+		extend: {
+			backgroundColor: ['hover', 'active', 'focus'],
+			ringWidth: ['active', 'focus'],
+			ringColor: ['hover', 'active', 'focus'],
+			borderColor: ['hover'],
+		},
 	},
 	plugins: [],
 };

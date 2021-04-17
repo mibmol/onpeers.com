@@ -15,7 +15,7 @@
 		"node_modules/*": true,
 		".next": true,
 		".build/**": true,
-		".git/*": true,
+		".git/**": true,
 		"yarn.lock": true,
 		"package-lock.json": true
 	},

@@ -1,3 +1,4 @@
+import { Locale } from 'dayjs/locale/*';
 import af from 'dayjs/locale/af';
 import am from 'dayjs/locale/am';
 import ar from 'dayjs/locale/ar';
@@ -94,7 +95,7 @@ import vi from 'dayjs/locale/vi';
 import yo from 'dayjs/locale/yo';
 import zh from 'dayjs/locale/zh';
 
-export const DayJSLocales = {
+export const DayJSLocales: { [key: string]: Locale } = {
 	af,
 	am,
 	ar,
@@ -192,7 +193,7 @@ export const DayJSLocales = {
 	zh,
 };
 
-export function loadDayJsLocale(alpha2code: string) {
+export function loadDayJsLocale(alpha2code: string): Locale {
 	let locale = DayJSLocales[alpha2code];
 	if (!locale) {
 		return DayJSLocales['en'];

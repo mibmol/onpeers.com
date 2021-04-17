@@ -4,7 +4,6 @@
  * Author: @miguelquo
  */
 
-
 type Header = Record<string, string>;
 
 export type Interceptor = {
@@ -26,21 +25,17 @@ export class JSONFetch {
 	};
 	interceptors: Interceptor[] = [];
 
-	constructor(baseURL: string = null, fetchOptions?: RequestInit) {
-		if (baseURL !== null) {
-			this.baseURL = baseURL;
-		}
-		if (fetchOptions !== null) {
-			this.fetchOptions = fetchOptions;
-		}
+	constructor(opts: { baseURL?: string; fetchOptions?: RequestInit } = {}) {
+		this.baseURL = opts.baseURL;
+		this.fetchOptions = opts.fetchOptions || {};
 	}
 
 	setHeader(name: string, value: string) {
 		this.headers[name] = value;
 	}
 
-	setAuthToken(token: string, prefix = null) {
-		let tkn;
+	setAuthToken(token: string, prefix: string = null) {
+		let tkn: string;
 		if (!prefix) tkn = token;
 		else tkn = `${prefix} ${token}`;
 
@@ -82,7 +77,7 @@ export class JSONFetch {
 		return await this.handleJSONResponse(response);
 	}
 
-	async put(url, body): Promise<ResponseData> {
+	async put(url: string, body: any): Promise<ResponseData> {
 		let response = await fetch(this.clearUrl(url), {
 			method: 'PUT',
 			headers: this.headers,
@@ -93,7 +88,7 @@ export class JSONFetch {
 		return await this.handleJSONResponse(response);
 	}
 
-	async delete(url, params): Promise<ResponseData> {
+	async delete(url: string, params: any): Promise<ResponseData> {
 		let response = await fetch(this.clearUrl(url, params), {
 			method: 'DELETE',
 			headers: this.headers,
@@ -102,7 +97,7 @@ export class JSONFetch {
 		return await this.handleJSONResponse(response);
 	}
 
-	async postForm(url, formObj): Promise<ResponseData> {
+	async postForm(url: string, formObj: any): Promise<ResponseData> {
 		let body = new FormData();
 		Object.keys(formObj).forEach((key) => body.append(key, formObj[key]));
 		let response = await fetch(this.clearUrl(url), {
@@ -133,15 +128,15 @@ export class JSONFetch {
 		return data;
 	}
 
-	clearUrl(url: string, params?: any) {
-		let fullURL;
+	clearUrl(url: string, params?: any): string {
+		let urlObj: URL;
 		if (this.baseURL) {
-			fullURL = (this.baseURL + url).replace(/([^:]\/)\/+/g, '$1');
+			urlObj = new URL(url.replace(/([^:]\/)\/+/g, '$1'), this.baseURL);
 		} else {
-			fullURL = url.replace(/([^:]\/)\/+/g, '$1');
+			urlObj = new URL(url);
 		}
 
-		if (params) return `${fullURL}?${new URLSearchParams(params).toString()}`;
-		return fullURL;
+		if (params) return `${urlObj.href}?${new URLSearchParams(params).toString()}`;
+		return urlObj.href;
 	}
 }

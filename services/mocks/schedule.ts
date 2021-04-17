@@ -1,6 +1,6 @@
 import { Schedule, ScheduleRecur } from '../models/schedule';
 import { sleep } from '../../utils/promise';
-import { getUTC } from '../../utils/dateUtils';
+import { getUTC } from '../../utils/date';
 import { RRule, RRuleSet, rrulestr } from 'rrule';
 import { datetime, DateTime } from '../../utils/dayjsUtils';
 import { Event, EventType } from '../models/service';

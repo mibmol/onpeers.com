@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from 'react';
 import Select, { StylesConfig } from 'react-select';
 import { SelectComponents } from 'react-select/src/components';
 import { arrayFill } from '../../utils/array';
-import { MINUTES_A_HOUR } from '../../utils/dateUtils';
+import { MINUTES_A_HOUR } from '../../utils/date';
 
 export type HHmm = {
 	hour: number;

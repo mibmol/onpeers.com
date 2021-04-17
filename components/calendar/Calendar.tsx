@@ -5,6 +5,7 @@ import { Button, IconButton } from '../common/buttons';
 import { ChevronDown, ChevronLeft, ChevronRight } from '../common/icons';
 import { Modal } from '../common/modal';
 import DropdownMenu from '../common/radix-ui/dropdown';
+import { IdProvider } from '@radix-ui/react-id';
 import { DayPicker } from '../datetime/DayPicker';
 import { useDateTime } from '../datetime/hooks';
 import AvailabilityEditor from './AvailabilityEditor';
@@ -158,27 +159,29 @@ const CalendarHeader: FC<{
 
 const WeekPicker: FC<{ actual: DateTime; onSetActual: (a: DateTime) => void }> = memo(
 	({ actual, onSetActual }) => (
-		<DropdownMenu.Root>
-			<DropdownMenu.Trigger className="flex-row-center btn-def px-4 border-t border-b border-gray-300">
-				<span>{actual.startOf('week').format('MMM DD')}</span>
-				<span className="mx-1">-</span>
-				<span>{actual.endOf('week').format('MMM DD')}</span>
-				<ChevronDown sizes="w-4 h-4 ml-1" />
-			</DropdownMenu.Trigger>
-			<DropdownMenu.Content className="rounded shadow-center-lg" align="center">
-				<DropdownMenu.Arrow
-					className="w-8 h-4 top-2 text-gray-200 stroke-current"
-					style={{ fill: 'white' }}
-				/>
-				<DayPicker
-					className="-top-1 border-white bg-white"
-					defaultSelectedDate={actual}
-					onSelectDate={onSetActual}
-					showMonthPicker={false}
-					daysWapperComponent={DropdownMenu.Item}
-					canSelectEmpty
-				/>
-			</DropdownMenu.Content>
-		</DropdownMenu.Root>
+		<IdProvider>
+			<DropdownMenu.Root>
+				<DropdownMenu.Trigger className="flex-row-center btn-def px-4 border-t border-b border-gray-300">
+					<span>{actual.startOf('week').format('MMM DD')}</span>
+					<span className="mx-1">-</span>
+					<span>{actual.endOf('week').format('MMM DD')}</span>
+					<ChevronDown sizes="w-4 h-4 ml-1" />
+				</DropdownMenu.Trigger>
+				<DropdownMenu.Content className="rounded shadow-center-lg" align="center">
+					<DropdownMenu.Arrow
+						className="w-8 h-4 top-2 text-gray-200 stroke-current"
+						style={{ fill: 'white' }}
+					/>
+					<DayPicker
+						className="-top-1 border-white bg-white"
+						defaultSelectedDate={actual}
+						onSelectDate={onSetActual}
+						showMonthPicker={false}
+						daysWapperComponent={DropdownMenu.Item}
+						canSelectEmpty
+					/>
+				</DropdownMenu.Content>
+			</DropdownMenu.Root>
+		</IdProvider>
 	),
 );
